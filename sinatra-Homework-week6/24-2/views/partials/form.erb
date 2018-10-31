@@ -1,0 +1,16 @@
+<form class="" action="/<%=@post.title%>" method="post">
+  <div class="">
+    <label>Title:</label>
+    <input type="text" name="title" placeholder="Enter the author" value="<%=@post.author%>">
+  </div>
+  <div class="">
+    <label>Body:</label>
+    <textarea name="body" rows="8" cols="80" placeholder="Enter the description of the book"><%=@post.description%></textarea>
+  </div>
+  <div class="">
+    <% if (@post.title) %>
+    <input type="hidden" name="_method" value="put">
+    <% end %>
+    <input type="submit" value="Save post">
+  </div>
+</form>

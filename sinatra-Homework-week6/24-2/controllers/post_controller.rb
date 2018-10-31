@@ -34,11 +34,12 @@ class PostController < Sinatra::Base
   end
 
   get "/new" do
-    @post = {
-      title: "",
-      author: "",
-      description: ""
-    }
+    @post = Post.new
+    #  {
+    #   title: "",
+    #   author: "",
+    #   description: ""
+    # }
     erb :'posts/new'
   end
 

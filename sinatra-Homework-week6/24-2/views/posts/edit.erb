@@ -1,6 +1,6 @@
 <h1>Edit page</h1>
 <%= erb :'partials/form', :layout=>false%>
-<form class="" action="/<%=@post.title%>" method="post">
+<form class="" action="/<%=@post.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" name="" value="delete">
 </form>

@@ -1,6 +1,6 @@
 class Post
 
-  attr_accessor :title, :author, :description
+  attr_accessor :id, :title, :author, :description
 
   def self.open_connection
     conn = PG.connect(dbname: "blog", user: "postgres", password: "Acad3my1")
@@ -8,7 +8,7 @@ class Post
 
   def self.all
     conn = self.open_connection
-    sql = "SELECT * FROM boooks ORDER BY title"
+    sql = "SELECT * FROM booklist ORDER BY title"
     results = conn.exec(sql)
     posts = results.map do |tuple|
       self.hydrate(tuple)
@@ -16,9 +16,9 @@ class Post
     return posts
   end
 
-  def self.find author
+  def self.find(id)
     conn = self.open_connection
-    sql = "SELECT * FROM boooks WHERE author= #{author}"
+    sql = "SELECT * FROM booklist WHERE id= #{id}"
     result = conn.exec(sql)
     post = self.hydrate(result[0])
     return post
@@ -26,6 +26,7 @@ class Post
 
   def self.hydrate(post_data)
     post = Post.new
+      post.id = post_data['id']
     post.title = post_data['title']
     post.author = post_data['author']
     post.description = post_data['description']
@@ -34,10 +35,10 @@ class Post
 
   def save
     conn = Post.open_connection
-    if (!self.title)
-    sql = "INSERT INTO boooks (title, author, description) VALUES ('#{self.title}', '#{self.author}', '#{self.description}')"
+    if (!self.id)
+    sql = "INSERT INTO booklist (title, author, description) VALUES ('#{self.title}', '#{self.author}', '#{self.description}')"
   else
-    sql = "UPDATE boooks SET author = '#{self.author}', description = '#{self.description}' WHERE title = '#{self.title}'"
+    sql = "UPDATE booklist SET title = '#{self.title}',author = '#{self.author}', description = '#{self.description}' WHERE id = '#{self.id}'"
   end
     conn.exec(sql)
   end
@@ -45,7 +46,7 @@ class Post
 
   def destroy
     conn = Post.open_connection
-    sql = "DELETE FROM boooks  WHERE title = #{title}"
+    sql = "DELETE FROM booklist  WHERE id= #{id}"
     conn.exec(sql)
   end
 end

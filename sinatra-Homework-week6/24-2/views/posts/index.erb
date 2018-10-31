@@ -3,7 +3,8 @@
 
     <% @post.each do |posts| %>
     <div>
-      <h2><a href="<%= posts.title %>"><%= posts.author %></a></h2>
+      <h2><a href="/<%= posts.id %>"><%= posts.title %></a></h2>
+      <p><%= posts.author %></p>
       <p><%= posts.description %></p>
     </div>
     <% end %>

@@ -1,0 +1,20 @@
+<form class="" action="/<%=@post.id%>" method="post">
+  <div class="">
+    <label>Title:</label>
+    <input type="text" name="title" placeholder="Enter the title" value="<%=@post.title%>">
+  </div>
+  <div class="">
+    <label>Author:</label>
+    <input type="text" name="author" placeholder="Enter the author" value="<%=@post.author%>">
+  </div>
+  <div class="">
+    <label>Description:</label>
+    <textarea name="description" rows="8" cols="80" placeholder="Enter the description of the book"><%=@post.description%></textarea>
+  </div>
+  <div class="">
+    <% if (@post.title) %>
+    <input type="hidden" name="_method" value="put">
+    <% end %>
+    <input type="submit" value="Save post">
+  </div>
+</form>

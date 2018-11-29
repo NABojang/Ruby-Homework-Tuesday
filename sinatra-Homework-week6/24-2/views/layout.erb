@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/style/style.css">
+  </head>
+  <body>
+    <%= erb(:'partials/navigation', :layout => false)%>
+    <%# template content form our templates will be injected here %>
+    <%= yield%>
+
+  </body>
+</html>
